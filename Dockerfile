@@ -57,14 +57,6 @@ RUN sudo -u hdfs hdfs namenode -format
 COPY conf/run-hadoop.sh /usr/bin/run-hadoop.sh
 RUN chmod +x /usr/bin/run-hadoop.sh
 
-## Uninstall not necessary hue apps
-RUN /usr/lib/hue/tools/app_reg/app_reg.py --remove hbase && \
-    /usr/lib/hue/tools/app_reg/app_reg.py --remove rdbms && \
-    /usr/lib/hue/tools/app_reg/app_reg.py --remove search && \
-    /usr/lib/hue/tools/app_reg/app_reg.py --remove sqoop && \    
-    /usr/lib/hue/tools/app_reg/app_reg.py --remove zookeeper && \
-    /usr/lib/hue/tools/app_reg/app_reg.py --remove security
-
 ## NameNode (HDFS)
 EXPOSE 8020 50070
 
