@@ -16,13 +16,6 @@ service hadoop-mapreduce-historyserver start
 sudo -u hdfs hadoop fs -mkdir -p /user/hdfs
 sudo -u hdfs hadoop fs -chown hdfs /user/hdfs
 
-# init oozie
-sudo -u hdfs hadoop fs -mkdir /user/oozie
-sudo -u hdfs hadoop fs -chown oozie:oozie /user/oozie
-sudo oozie-setup sharelib create -fs hdfs://localhost:8020 -locallib /usr/lib/oozie/oozie-sharelib-yarn
-
-service oozie start
-
 # init spark history server
 sudo -u hdfs hadoop fs -mkdir /user/spark
 sudo -u hdfs hadoop fs -mkdir /user/spark/applicationHistory
@@ -38,7 +31,4 @@ service spark-history-server start
 
 service hue start
 
-sleep 1
-
-# tail log directory
-tail -n 1000 -f /var/log/hadoop-*/*.out
+sleep infinity
